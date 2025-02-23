@@ -3,10 +3,11 @@ from nicegui import ui, events
 import openai
 import base64
 
-current_directory = "C:/Users/Aditya/compamy"
+import os
 
-client = openai.OpenAI(
-    api_key="key")
+current_directory = os.getcwd()
+
+client = openai.OpenAI(api_key=os.getenv("OPENAI_KEY"))
 
 
 def encode_image(image_path):
@@ -43,7 +44,7 @@ def save_image(e: events.UploadEventArguments):
         with open(file_path, 'wb') as f:
             f.write(e.content.read())
         ui.notify(f'Uploaded and saved as {e.name}')
-    image_path = "C:/Users/Aditya/compamy/" + e.name
+    image_path = current_directory + "/" + e.name
     user_prompt = "what are your remarks about this cartoon character, try to be funny. make sure you do not end on a positive note. Be as sarcastic as you can, please limit it to one sentence and make it spicy. You can be rude because this a nonexistent being and does not have feelings. Try to include stuff included in the picture in the joke. Do not mention that this is a cartoon character. Do not talk about hair. "
     response = chat_with_gpt(image_path, user_prompt)
     output_label.text = response
