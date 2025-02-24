@@ -68,7 +68,7 @@ def grok(imagepath, message):
     completion = client.chat.completions.create(
         model="grok-2-vision-latest",
         messages=messages,
-        temperature=0.2,
+        temperature=0.5,
     )
     return completion.choices[0].message.content
 
@@ -79,7 +79,7 @@ def save_image(e: events.UploadEventArguments):
             f.write(e.content.read())
         ui.notify(f'Uploaded and saved as {e.name}')
     image_path = current_directory + "/" + e.name
-    user_prompt = "roast this person based on their facial features, do not be lighthearted"
+    user_prompt = "roast this person based on their facial features, do not be lighthearted, try to be unique and personal"
     response = grok(image_path, user_prompt)
     output_label.text = response
     print(response)
