@@ -62,7 +62,7 @@ with ui.header(elevated=True).style('background-color: #689cd4'):
 with ui.row().classes('justify-center items-center w-full h-[80vh]'):
     with ui.column().classes('items-center'):
         ui.upload(on_upload=save_image, label="Upload Image").props('accept=image/*').classes('max-w-full').style('width: 500px; height: 700px;')
-        ui.label("Roast:").props('autogrow').classes('max-w-full').style('font-size: 2em; height: 150px;')
+        ui.label("Roast:").props('autogrow').classes('max-w-full').style('font-size: 2em; height: 60px;')
         output_label = ui.label("Status: Waiting for input...").style('margin-top: 10px; font-size: 2em')
 
 # Footer
