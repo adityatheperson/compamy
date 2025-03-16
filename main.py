@@ -115,6 +115,7 @@ with ui.row().classes('justify-center items-start w-full h-[80vh]'):
         ui.label("Roast:").props('autogrow').classes('max-w-full').style('font-size: 3em; color: #ff2600; height: 30px;')
         ui.space().style('height: 10px')
         output_label = ui.label("Status: Waiting for input...").style('margin-top: 10px; font-size: 2em; min-height: 50px;')
+        ui.space().style('height: 50px')
 
 
 with ui.footer().style('background-color: #141E46; border-top: 2px solid #ff2600; color: #ff2600;'):
