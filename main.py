@@ -13,6 +13,7 @@ client = OpenAI(
     api_key=XAI_API_KEY,
     base_url="https://api.x.ai/v1",
 )
+slider_value = 20
 
 
 def encode_image(image_path):
@@ -90,7 +91,6 @@ def save_image(e: events.UploadEventArguments):
     print(f"Current slider_value: {slider_value}")
 
 
-
 ui.html("""
 <style>
 body {
@@ -109,8 +109,7 @@ with ui.row().classes('justify-center items-start w-full h-[80vh]'):
         ui.upload(on_upload=save_image, label="Upload Image").props('accept=image/* color="red"').classes('max-w-full').style('width: 500px; height: 400px; background-color: #f0f0f0; padding: 20px; border-radius: 10px;')
         ui.space().style('height: 10px')
         ui.label("Temperature:").props('autogrow').classes('max-w-full').style('font-size: 1em; height: 30px;')
-        slider_value = 20
-        slider = ui.slider(min=1, max=99, value = slider_value).props('label-always color="red" track-color="red"').bind_value(globals(), 'slider_value').style('color: #ff2600; width: 300px;') # Bind to the *local* slider_value
+        slider = ui.slider(min=1, max=99, value = slider_value).props('label-always color="red" track-color="red"').bind_value_to(globals(), 'slider_value').style('color: #ff2600; width: 300px;')
         ui.label().bind_text_from(slider, 'value', lambda value: f"{(value / 100):.2f}")
         ui.space().style('height: 10px')
         ui.label("Roast:").props('autogrow').classes('max-w-full').style('font-size: 3em; color: #ff2600; height: 30px;')
